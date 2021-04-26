@@ -369,6 +369,9 @@ def get_timerange(data: Dict[str, DataFrame]) -> Tuple[arrow.Arrow, arrow.Arrow]
     :param data: dictionary with preprocessed backtesting data
     :return: tuple containing min_date, max_date
     """
+    for pair, frame in data.items():
+        if str(frame['date'].min()) == 'NaT' or str(frame['date'].max()) == 'NaT':
+            print(pair)
     timeranges = [
         (arrow.get(frame['date'].min()), arrow.get(frame['date'].max()))
         for frame in data.values()
