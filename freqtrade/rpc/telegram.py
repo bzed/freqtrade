@@ -749,7 +749,7 @@ class Telegram(RPCHandler):
         Returns the currently active locks
         """
         rpc_locks = self._rpc._rpc_locks()
-        for locks in chunks(rpc_locks['locks'], 10):
+        for locks in chunks(rpc_locks['locks'], 25):
             message = tabulate([[
                 lock['id'],
                 lock['pair'],
